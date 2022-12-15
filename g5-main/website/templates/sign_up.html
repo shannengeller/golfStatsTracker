@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block title %}Sign-Up{% endblock %} 
+{% block content %} 
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <!-- <link href="homeStyle.css" rel="stylesheet"> -->
+
+    <title>SignUp</title>
+</head>
+
+<body> 
+    <div class="container-xl position-absolute top-50 start-50 translate-middle mx-0" >
+        <form method = "POST">
+        <div class="col-sm-8 mx-auto text-center px-5 p-5"
+            style="background-color:#acd0b3; border-radius: 5%;">
+            
+            <div class="container-sm col-sm-6 p-2 rounded border border-white border-2"
+            style="background-color:#062713; ">
+                <h1  style="color:#ffffff; ">
+                    <strong> Create an Account</strong>
+                </h1>
+        </div>
+            <div class="d-grid gap-2 col-10 mx-auto mb-3 px-1 py-2">
+                <div class="row g-3 align-items-center mt-1">
+                    <div class="col-4 fs-5">
+                        <h1 class="col-form-label text-left" for="email"><strong>EMAIL ADDRESS:</strong></h1>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control rounded-pill py-3" aria-describedby="passwordHelpInline" id="email"
+                        name="email">
+                    </div>
+                </div>
+
+                <div class="row g-3 align-items-center mt-1">
+                    <div class="col-4 fs-5">
+                        <h1 class="col-form-label text-left" for="password"><strong>FIRST NAME:</strong></h1>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control rounded-pill py-3 w-75"
+                            aria-describedby="passwordHelpInline"  id="firstName"
+                            name="firstName">
+                    </div>
+                </div>
+
+                <div class="row g-3 align-items-center mt-1">
+                    <div class="col-4 fs-5">
+                        <h1 class="col-form-label text-left" for="password1"><strong>PASSWORD:</strong></h1>
+                    </div>
+                    <div class="col-8">
+                        <input type="password"  class="form-control rounded-pill py-3"
+                            aria-describedby="passwordHelpInline"  id="password1"
+                            name="password1">
+                    </div>
+                </div>
+
+                <div class="row g-3 align-items-center mt-1">
+                    <div class="col-4 fs-5">
+                        <h2 class="col-form-label text-left" for="password2"><strong>PASSWORD(Confirm):</strong></h2>
+                    </div>
+                    <div class="col-8">
+                        <input type="password"  class="form-control rounded-pill py-3"
+                            aria-describedby="passwordHelpInline"  id="password2"
+                            name="password2">
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 col-4 mx-auto mt-4 mb-0">
+                    <button class="btn btn-sm btn-dark mt-2 text-white rounded-pill mb-0" style="background-color: #062713;"
+                    type="submit"> <h4>Submit</h4> </button>   
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

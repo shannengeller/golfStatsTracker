@@ -1,0 +1,1639 @@
+{% extends "base.html" %} {% block title %}Changed{% endblock %}
+{% block content %}
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .row {
+    display: flex;
+  }
+
+  .column {
+    flex: 50%;
+    padding: 5px;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 75%;
+    border: 1px solid #ddd;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 16px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  #regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    font-family: Raleway;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+  }
+
+  .tab {
+    display: none;
+  }
+</style>
+
+<form method="POST">
+  <body>
+  
+    <form id="regForm"   style="background-color:#acd0b3; border-radius: 5%;" action="/action_page.php">
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        
+        <div class="container-sm col-sm-6 p-2 rounded border border-white border-2"
+        style="background-color:#062713; ">
+            <h1  style="color:#ffffff; ">
+                Stat Entry
+            </h1>
+    </div>
+        <div class="form-group">
+              <h1 class="col-form-label text-left mt-3" for="Playername"><strong>Player Name:</strong></h1>
+              <input type="text" class="form-control rounded-pill py-3" 
+                id="Playername" name="playername" placeholder="Enter Player Name">
+        </div>
+        <div class = "form-group">
+              <h1 class="col-form-label text-left mt-3" for="Cousrsename"><strong>Course Name:</strong></h1>
+              <input type="text" class="form-control rounded-pill py-3" 
+              id="Cousrsename" name="Cousrsename" placeholder="Enter Course Name">       
+            </div>
+              <div class = "form-group">
+              <h1 class="col-form-label text-left mt-3" for="Date"><strong>Date:</strong></h1>
+              <input type="date" class="form-control rounded-pill py-3 " 
+              id="Date" name="Date" placeholder="Enter Date">
+        </div>
+
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+            type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+
+      
+      <!-- One "tab" for each step in the form: -->
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 1 </h1>
+        <table>
+          <tr style="background-color:#cfe0d1;">
+            <td>Par</td>
+            
+            <td>
+              <input type="radio" id="Par" name="Par" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par" name="Par" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par" name="Par" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway" name="Fairway"> Left
+              <input type="radio" id="Fairway" name="Fairway"> Hit
+              <input type="radio" id="Fairway" name="Fairway"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir" name="Gir"> Yes
+              <input type="radio" id="Gir" name="Gir"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" form-control" id="ApproachD" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown" name="UpDown"> Yes
+              <input type="radio" id="UpDown" name="UpDown"> No
+              <input type="radio" id="UpDown" name="UpDown"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown" name="SandUpDown"> Yes
+              <input type="radio" id="SandUpDown" name="SandUpDown"> No
+              <input type="radio" id="SandUpDown" name="SandUpDown"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h" placeholder="Enter Proximity to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>      
+        </div>
+
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 2 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par2" name="Par2" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par2" name="Par2" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par2" name="Par2" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score2" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway2" name="Fairway2"> Left
+              <input type="radio" id="Fairway2" name="Fairway2"> Hit
+              <input type="radio" id="Fairway2" name="Fairway2"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir2" name="Gir2"> Yes
+              <input type="radio" id="Gir2" name="Gir2"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD2" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown2" name="UpDown2"> Yes
+              <input type="radio" id="UpDown2" name="UpDown2"> No
+              <input type="radio" id="UpDown2" name="UpDown2"> N/A
+            </td>
+          </tr>
+
+          <tr style="background-color:#cfe0d1;">
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown2" name="SandUpDown2"> Yes
+              <input type="radio" id="SandUpDown2" name="SandUpDown2"> No
+              <input type="radio" id="SandUpDown2" name="SandUpDown2"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts2" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Proximity to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h2" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 3 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par3" name="Par3" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par3" name="Par3" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par3" name="Par3" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score3" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway3" name="Fairway3"> Left
+              <input type="radio" id="Fairway3" name="Fairway3"> Hit
+              <input type="radio" id="Fairway3" name="Fairway3"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir3" name="Gir3"> Yes
+              <input type="radio" id="Gir3" name="Gir3"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD3" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown3" name="UpDown3"> Yes
+              <input type="radio" id="UpDown3" name="UpDown3"> No
+              <input type="radio" id="UpDown3" name="UpDown3"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown3" name="SandUpDown3"> Yes
+              <input type="radio" id="SandUpDown3" name="SandUpDown3"> No
+              <input type="radio" id="SandUpDown3" name="SandUpDown3"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts3" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;" >
+              <input type="number" class="form-control" id="p2h3" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 4</h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par4" name="Par4" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par4" name="Par4" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par4" name="Par4" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score4" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway4" name="Fairway4"> Left
+              <input type="radio" id="Fairway4" name="Fairway4"> Hit
+              <input type="radio" id="Fairway4" name="Fairway4"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir4" name="Gir4"> Yes
+              <input type="radio" id="Gir4" name="Gir4"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD4" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown4" name="UpDown4"> Yes
+              <input type="radio" id="UpDown4" name="UpDown4"> No
+              <input type="radio" id="UpDown4" name="UpDown4"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown4" name="SandUpDown4"> Yes
+              <input type="radio" id="SandUpDown4" name="SandUpDown4"> No
+              <input type="radio" id="SandUpDown4" name="SandUpDown4"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts4" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Proximity to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h4" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 5 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par5" name="Par5">
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par5" name="Par5" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par5" name="Par5" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score5" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway5" name="Fairway5"> Left
+              <input type="radio" id="Fairway5" name="Fairway5"> Hit
+              <input type="radio" id="Fairway5" name="Fairway5"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir5" name="Gir5"> Yes
+              <input type="radio" id="Gir5" name="Gir5"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD5" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown5" name="UpDown5"> Yes
+              <input type="radio" id="UpDown5" name="UpDown5"> No
+              <input type="radio" id="UpDown5" name="UpDown5"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown5" name="SandUpDown5"> Yes
+              <input type="radio" id="SandUpDown5" name="SandUpDown5"> No
+              <input type="radio" id="SandUpDown5" name="SandUpDown5"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts5" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p5h5" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 6 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par6" name="Par6" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par6" name="Par6" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par6" name="Par6" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score6" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway6" name="Fairway6"> Left
+              <input type="radio" id="Fairway6" name="Fairway6"> Hit
+              <input type="radio" id="Fairway6" name="Fairway6"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir6" name="Gir6"> Yes
+              <input type="radio" id="Gir6" name="Gir6"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD6" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown6" name="UpDown6"> Yes
+              <input type="radio" id="UpDown6" name="UpDown6"> No
+              <input type="radio" id="UpDown6" name="UpDown6"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown6" name="SandUpDown6"> Yes
+              <input type="radio" id="SandUpDown6" name="SandUpDown6"> No
+              <input type="radio" id="SandUpDown6" name="SandUpDown6"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts6" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h6" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 7 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par7" name="Par7" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par7" name="Par7" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par7" name="Par7" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score7" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway7" name="Fairway7"> Left
+              <input type="radio" id="Fairway7" name="Fairway7"> Hit
+              <input type="radio" id="Fairway7" name="Fairway7"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir7" name="Gir7"> Yes
+              <input type="radio" id="Gir7" name="Gir7"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD7" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown7" name="UpDown7"> Yes
+              <input type="radio" id="UpDown7" name="UpDown7"> No
+              <input type="radio" id="UpDown7" name="UpDown7"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown7" name="SandUpDown7"> Yes
+              <input type="radio" id="SandUpDown7" name="SandUpDown7"> No
+              <input type="radio" id="SandUpDown7" name="SandUpDown7"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts7" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h7" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 8 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par8" name="Par8" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par8" name="Par8" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par8" name="Par8" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score8" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway8" name="Fairway8"> Left
+              <input type="radio" id="Fairway8" name="Fairway8"> Hit
+              <input type="radio" id="Fairway8" name="Fairway8"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir8" name="Gir8"> Yes
+              <input type="radio" id="Gir8" name="Gir8"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD8" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown8" name="UpDown8"> Yes
+              <input type="radio" id="UpDown8" name="UpDown8"> No
+              <input type="radio" id="UpDown8" name="UpDown8"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td>
+              <input type="radio" id="SandUpDown8" name="SandUpDown8"> Yes
+              <input type="radio" id="SandUpDown8" name="SandUpDown8"> No
+              <input type="radio" id="SandUpDown8" name="SandUpDown8"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts8" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h8" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>Hole 9
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par9" name="Parr9" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par9" name="Par9" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par9" name="Par9" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score9" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway9" name="Fairway9"> Left
+              <input type="radio" id="Fairway9" name="Fairway9"> Hit
+              <input type="radio" id="Fairway9" name="Fairway9"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir9" name="Gir9"> Yes
+              <input type="radio" id="Gir9" name="Gir9"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;" >Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD9" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown9" name="UpDown9"> Yes
+              <input type="radio" id="UpDown9" name="UpDown9"> No
+              <input type="radio" id="UpDown9" name="UpDown9"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown9" name="SandUpDown9"> Yes
+              <input type="radio" id="SandUpDown9" name="SandUpDown9"> No
+              <input type="radio" id="SandUpDown9" name="SandUpDown9"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts9" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h9" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 10 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par10" name="Par10" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par10" name="Par10" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par10" name="Par10" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score10" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway10" name="Fairway10"> Left
+              <input type="radio" id="Fairway10" name="Fairway10"> Hit
+              <input type="radio" id="Fairway10" name="Fairway10"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir10" name="Gir10"> Yes
+              <input type="radio" id="Gir10" name="Gir10"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;" >
+              <input type="number" class="form-control" id="ApproachD10" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown10" name="UpDown10"> Yes
+              <input type="radio" id="UpDown10" name="UpDown10"> No
+              <input type="radio" id="UpDown10" name="UpDown10"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown10" name="SandUpDown10"> Yes
+              <input type="radio" id="SandUpDown10" name="SandUpDown10"> No
+              <input type="radio" id="SandUpDown10" name="SandUpDown10"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts10" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h10" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 11 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par11" name="Par11" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par11" name="Par11" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par11" name="Par11" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score11" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway11" name="Fairway11"> Left
+              <input type="radio" id="Fairway11" name="Fairway11"> Hit
+              <input type="radio" id="Fairway11" name="Fairway11"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir11" name="Gir11"> Yes
+              <input type="radio" id="Gir11" name="Gir11"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD11" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown11" name="UpDown11"> Yes
+              <input type="radio" id="UpDown11" name="UpDown11"> No
+              <input type="radio" id="UpDown11" name="UpDown11"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown11" name="SandUpDown11"> Yes
+              <input type="radio" id="SandUpDown11" name="SandUpDown11"> No
+              <input type="radio" id="SandUpDown11" name="SandUpDown11"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts11" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h11" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 12 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par12" name="Par12" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par12" name="Par12" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par12" name="Par12" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score12" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway12" name="Fairway12"> Left
+              <input type="radio" id="Fairway12" name="Fairway12"> Hit
+              <input type="radio" id="Fairway12" name="Fairway12"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir12" name="Gir12"> Yes
+              <input type="radio" id="Gir12" name="Gir12"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD12" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown12" name="UpDown12"> Yes
+              <input type="radio" id="UpDown12" name="UpDown12"> No
+              <input type="radio" id="UpDown12" name="UpDown12"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown12" name="SandUpDown12"> Yes
+              <input type="radio" id="SandUpDown12" name="SandUpDown12"> No
+              <input type="radio" id="SandUpDown12" name="SandUpDown12"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts12" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h12" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 13 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par13" name="Par13" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par13" name="Par13" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par13" name="Par13" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score13" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway13" name="Fairway13"> Left
+              <input type="radio" id="Fairway13" name="Fairway13"> Hit
+              <input type="radio" id="Fairway13" name="Fairway13"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir13" name="Gir13"> Yes
+              <input type="radio" id="Gir13" name="Gir13"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD13" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown13" name="UpDown13"> Yes
+              <input type="radio" id="UpDown13" name="UpDown13"> No
+              <input type="radio" id="UpDown13" name="UpDown13"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown13" name="SandUpDown13"> Yes
+              <input type="radio" id="SandUpDown13" name="SandUpDown13"> No
+              <input type="radio" id="SandUpDown13" name="SandUpDown13"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts13" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h13" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 14 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par14" name="Par14" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par14" name="Par14" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par14" name="Par14" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score14" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway14" name="Fairway14"> Left
+              <input type="radio" id="Fairway14" name="Fairway14"> Hit
+              <input type="radio" id="Fairway14" name="Fairway14"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir14" name="Gir14"> Yes
+              <input type="radio" id="Gir14" name="Gir14"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD14" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown14" name="UpDown14"> Yes
+              <input type="radio" id="UpDown14" name="UpDown14"> No
+              <input type="radio" id="UpDown14" name="UpDown14"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown14" name="SandUpDown14"> Yes
+              <input type="radio" id="SandUpDown14" name="SandUpDown14"> No
+              <input type="radio" id="SandUpDown14" name="SandUpDown14"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts14" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h14" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 15 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par15" name="Par15" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par15" name="Par15" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par15" name="Par15" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score15" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway15" name="Fairway15"> Left
+              <input type="radio" id="Fairway15" name="Fairway15"> Hit
+              <input type="radio" id="Fairway15" name="Fairway15"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir15" name="Gir15"> Yes
+              <input type="radio" id="Gir15" name="Gir15"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD15" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown15" name="UpDown15"> Yes
+              <input type="radio" id="UpDown15" name="UpDown15"> No
+              <input type="radio" id="UpDown15" name="UpDown15"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown15" name="SandUpDown15"> Yes
+              <input type="radio" id="SandUpDown15" name="SandUpDown15"> No
+              <input type="radio" id="SandUpDown15" name="SandUpDown15"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts15" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h15" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 16 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par16" name="Par16" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par16" name="Par16" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par16" name="Par16" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score16" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway16" name="Fairway16"> Left
+              <input type="radio" id="Fairway16" name="Fairway16"> Hit
+              <input type="radio" id="Fairway16" name="Fairway16"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir16" name="Gir16"> Yes
+              <input type="radio" id="Gir16" name="Gir16"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD16" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown16" name="UpDown16"> Yes
+              <input type="radio" id="UpDown16" name="UpDown16"> No
+              <input type="radio" id="UpDown16" name="UpDown16"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown16" name="SandUpDown16"> Yes
+              <input type="radio" id="SandUpDown16" name="SandUpDown16"> No
+              <input type="radio" id="SandUpDown16" name="SandUpDown16"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts16" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h16" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 17 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par17" name="Par17" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par17" name="Par17" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par17" name="Par17" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score17" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway17" name="Fairway17"> Left
+              <input type="radio" id="Fairway17" name="Fairway17"> Hit
+              <input type="radio" id="Fairway17" name="Fairway17"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir17" name="Gir17"> Yes
+              <input type="radio" id="Gir17" name="Gir17"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD17" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown17" name="UpDown17"> Yes
+              <input type="radio" id="UpDown17" name="UpDown17"> No
+              <input type="radio" id="UpDown17" name="UpDown17"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown17" name="SandUpDown17"> Yes
+              <input type="radio" id="SandUpDown17" name="SandUpDown17"> No
+              <input type="radio" id="SandUpDown17" name="SandUpDown17"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts17" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h17" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+      <div class="tab p-5 mt-5" style="background-color:#acd0b3; border-radius: 5%;" align='center'>
+        <h1 class="my-2">Hole 18 </h1>
+       <table>
+          <tr>
+            <td style="background-color:#cfe0d1;">Par</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Par18" name="Par18" />
+              <label for="contactChoice1">3</label>
+
+              <input type="radio" id="Par18" name="Par18" />
+              <label for="contactChoice2">4</label>
+
+              <input type="radio" id="Par18" name="Par18" />
+              <label for="contactChoice3">5</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Score</td>
+            <td>
+              <input type="number" class="form-control" id="Score18" placeholder="Enter Score" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Fairway</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="Fairway18" name="Fairway18"> Left
+              <input type="radio" id="Fairway18" name="Fairway18"> Hit
+              <input type="radio" id="Fairway18" name="Fairway18"> Right
+            </td>
+          </tr>
+
+          <tr>
+            <td>Gir</td>
+            <td>
+              <input type="radio" id="Gir18" name="Gir18"> Yes
+              <input type="radio" id="Gir18" name="Gir18"> No
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Approach Distance</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="ApproachD18" placeholder="Enter Approach Distance" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Up/Down</td>
+            <td>
+              <input type="radio" id="UpDown18" name="UpDown18"> Yes
+              <input type="radio" id="UpDown18" name="UpDown18"> No
+              <input type="radio" id="UpDown18" name="UpDown18"> N/A
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color:#cfe0d1;">Sand U/D</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="radio" id="SandUpDown18" name="SandUpDown18"> Yes
+              <input type="radio" id="SandUpDown18" name="SandUpDown18"> No
+              <input type="radio" id="SandUpDown18" name="SandUpDown18"> N/A
+            </td>
+          </tr>
+          <tr>
+            <td>Putts</td>
+            <td>
+              <input type="number" class="form-control" id="putts18" placeholder="Enter Putts" />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#cfe0d1;">Prox to Hole</td>
+            <td style="background-color:#cfe0d1;">
+              <input type="number" class="form-control" id="p2h18" placeholder="Enter Prox to Hole" />
+            </td>
+          </tr>
+        </table>    <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Prev</button>
+        <button class="btn btn-lg btn-dark mt-2 text-white rounded-pill mb-0 mt-4 px-5" style="background-color: #062713;"
+          type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </div>
+      <!-- <div style="overflow:auto;">
+        <div style="float:right;">
+          <button class="btn btn-sm btn-dark mt-2 text-white rounded-pill mb-0" style="background-color: #062713;" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+          <button class="btn btn-sm btn-dark mt-2 text-white rounded-pill mb-0" style="background-color: #062713;"
+            type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        </div> -->
+      </div>
+
+      <!-- Circles which indicates the steps of the form: -->
+      <div style="text-align:center;margin-top:40px;">
+        {%for i in range(1, 19)%}
+        <span class="step"></span>
+        {%endfor%}
+      </div>
+    </form>
+
+    <script>
+
+      var currentTab = 0; // Current tab is set to be the first tab (0)
+      showTab(currentTab); // Display the current tab
+
+      function showTab(n) {
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+          document.getElementById("prevBtn").style.display = "none";
+        } else {
+          document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+          document.getElementById("nextBtn").style.display = "none";
+        } else {
+          document.getElementById("nextBtn").style.display = "block";
+          document.getElementById("nextBtn").innerHTML = "Next";
+        }
+        //... and run a function that will display the correct step indicator:
+        fixStepIndicator(n)
+      }
+
+      function nextPrev(n) {
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("tab");
+        // Exit the function if any field in the current tab is invalid:
+        if (n == 1 && !validateForm())
+          return false;
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        if (currentTab >= x.length) {
+          // ... the form gets submitted:
+          document.getElementById("regForm").submit();
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
+      }
+
+      function validateForm() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // A loop that checks every input field in the current tab:
+        for (i = 0; i < y.length; i++) {
+          // If a field is empty...
+          if (y[i].value == "") {
+            // add an "invalid" class to the field:
+            y[i].className += " invalid";
+            // and set the current valid status to false
+            valid = false;
+          }
+        }
+        // If the valid status is true, mark the step as finished and valid:
+        if (valid) {
+          document.getElementsByClassName("step")[currentTab].className += " finish";
+        }
+        return valid; // return the valid status
+      }
+
+      function fixStepIndicator(n) {
+        // This function removes the "active" class of all steps...
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+          x[i].className = x[i].className.replace(" active", "");
+        }
+        //... and adds the "active" class on the current step:
+        x[n].className += " active";
+      }
+
+    </script>
+
+  </body>
+</form>
+{% endblock %}
